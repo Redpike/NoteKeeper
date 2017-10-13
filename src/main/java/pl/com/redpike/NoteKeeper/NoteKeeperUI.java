@@ -6,17 +6,17 @@ import com.vaadin.navigator.ViewDisplay;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.annotation.SpringViewDisplay;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.themes.ValoTheme;
 
 @SpringUI
 @SpringViewDisplay
-@Theme(ValoTheme.THEME_NAME)
+@Theme("redpike")
 public class NoteKeeperUI extends UI implements ViewDisplay {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-
+        setContent(new Label("Hello!"));
     }
 
     @Override
