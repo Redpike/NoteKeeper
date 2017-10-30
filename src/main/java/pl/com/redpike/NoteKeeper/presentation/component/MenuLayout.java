@@ -25,6 +25,7 @@ public class MenuLayout extends VerticalLayout {
     }
 
     private void initLayout() {
+        setWidth(200, Unit.PIXELS);
         menuItemButtonList.forEach(component -> {
             addComponent(component);
             setComponentAlignment(component, Alignment.MIDDLE_CENTER);

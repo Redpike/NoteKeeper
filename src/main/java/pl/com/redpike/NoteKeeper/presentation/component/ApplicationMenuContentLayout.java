@@ -17,18 +17,14 @@ public class ApplicationMenuContentLayout extends HorizontalLayout {
 
     private void initComponents() {
         menuLayout = new MenuLayout();
-        menuLayout.setWidth(100, Unit.PERCENTAGE);
-        menuLayout.setHeight(100, Unit.PERCENTAGE);
-
-        contentLayout = new MVerticalLayout()
-                .withFullSize();
+        contentLayout = new MVerticalLayout();
     }
 
     private void initLayout() {
+        setSizeFull();
         addStyleName(RedpikeTheme.MENU_CONTENT_CONTAINER);
         addComponents(menuLayout, contentLayout);
-        setExpandRatio(menuLayout, 0.15f);
-        setExpandRatio(contentLayout, 0.85f);
+        setExpandRatio(contentLayout, 0.8f);
     }
 
     public VerticalLayout getContentLayout() {

@@ -9,6 +9,7 @@ import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.com.redpike.NoteKeeper.presentation.component.menu_item.MenuItem;
 import pl.com.redpike.NoteKeeper.presentation.home.HomePresenter;
+import pl.com.redpike.NoteKeeper.presentation.home.HomeView;
 
 import javax.annotation.PostConstruct;
 
@@ -24,7 +25,7 @@ public class HomePage extends VerticalLayout implements View {
     @PostConstruct
     public void init() {
         setMargin(false);
-        addComponent(new Label(homePresenter.getWelcomeMessage() + " " + homePresenter.getUserByLogin("rs3")));
+        addComponent(new HomeView(homePresenter));
     }
 
     @Override

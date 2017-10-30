@@ -33,9 +33,13 @@
   @include valo;
 
   .header-container,
-  .menu-container,
-  .footer-container {
+  .v-slot-menu-container,
+  .menu-container {
     background: rgba(33, 33, 33, 1) no-repeat;
+  }
+
+  .footer-container {
+    background: rgba(0, 0, 0, 1) no-repeat;
   }
 
   .menu-container .menu-item {

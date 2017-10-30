@@ -25,7 +25,7 @@ public class ApplicationLayout extends VerticalLayout {
 
     private void initLayout() {
         addComponents(applicationHeaderLayout, applicationMenuContentLayout, applicationFooterLayout);
-        setComponentAlignment(applicationFooterLayout, Alignment.BOTTOM_CENTER);
+        setExpandRatio(applicationMenuContentLayout, 0.8f);
     }
 
     public ApplicationMenuContentLayout getApplicationMenuContentLayout() {
