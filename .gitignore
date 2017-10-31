@@ -1,4 +1,6 @@
 target/
+NoteKeeper-webapp/src/main/resources/VAADIN/widgetsets/
+NoteKeeper-webapp/src/main/resources/VAADIN/themes/redpike/styles.css
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
