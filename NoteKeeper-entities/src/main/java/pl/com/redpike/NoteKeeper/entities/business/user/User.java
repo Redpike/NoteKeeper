@@ -2,12 +2,14 @@ package pl.com.redpike.NoteKeeper.entities.business.user;
 
 import pl.com.redpike.NoteKeeper.entities.business.converter.YesNoEnumConverter;
 import pl.com.redpike.NoteKeeper.entities.business.enums.YesNoEnum;
+import pl.com.redpike.NoteKeeper.entities.business.role.Role;
 import pl.com.redpike.NoteKeeper.entities.utility.DbObjectNames;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = DbObjectNames.USERS, schema = DbObjectNames.SCHEMA)
@@ -46,6 +48,10 @@ public class User {
     @Size(max = 80)
     @Column(name = "email", length = 80)
     private String email;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role", referencedColumnName = "id", nullable = false)
+    private Role role;
 
     @Convert(converter = YesNoEnumConverter.class)
     @Column(name = "is_blocked")
@@ -119,6 +125,14 @@ public class User {
         this.email = email;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public YesNoEnum getIsBlocked() {
         return isBlocked;
     }
@@ -139,34 +153,23 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         User user = (User) o;
-
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
-        if (login != null ? !login.equals(user.login) : user.login != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (password2 != null ? !password2.equals(user.password2) : user.password2 != null) return false;
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
-        if (birthday != null ? !birthday.equals(user.birthday) : user.birthday != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (isBlocked != user.isBlocked) return false;
-        return isDeleted == user.isDeleted;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(login, user.login) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(password2, user.password2) &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(surname, user.surname) &&
+                Objects.equals(birthday, user.birthday) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(role, user.role) &&
+                isBlocked == user.isBlocked &&
+                isDeleted == user.isDeleted;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (login != null ? login.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (password2 != null ? password2.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (isBlocked != null ? isBlocked.hashCode() : 0);
-        result = 31 * result + (isDeleted != null ? isDeleted.hashCode() : 0);
-        return result;
+        return Objects.hash(id, login, password, password2, name, surname, birthday, email, role, isBlocked, isDeleted);
     }
 
     @Override
@@ -180,6 +183,7 @@ public class User {
                 ", surname='" + surname + '\'' +
                 ", birthday=" + birthday +
                 ", email='" + email + '\'' +
+                ", role=" + role +
                 ", isBlocked=" + isBlocked +
                 ", isDeleted=" + isDeleted +
                 '}';
