@@ -17,6 +17,9 @@ public class MenuItemCreator {
 
     private static final String PAGES_PACKAGE = "pl.com.redpike.NoteKeeper.webapp.presentation.page";
 
+    private MenuItemCreator() {
+    }
+
     public static List<MenuItemButton> makeMenuItemButtons() {
         List<MenuItemButton> menuItemButtonList = Lists.newArrayList();
         Reflections reflections = new Reflections(PAGES_PACKAGE);
